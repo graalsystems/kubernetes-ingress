@@ -531,7 +531,7 @@ RUN --mount=type=secret,id=nginx-repo.crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode
 FROM ${BUILD_OS} AS modsecurity-lib
 ARG MS_NGINX_VERSION=1.23.2
 
-RUN apt-get update && apt-get install -y -q --fix-missing --no-install-recommends apt-utils autoconf automake build-essential git libcurl4-openssl-dev libgeoip-dev liblmdb-dev libpcre++-dev libtool libxml2-dev libyajl-dev pkgconf wget zlib1g-dev
+RUN apt-get update && apt-get install -y -q --fix-missing --no-install-recommends apt-utils autoconf automake build-essential git libcurl4-openssl-dev libgeoip-dev liblmdb-dev libpcre3-dev libtool libxml2-dev libyajl-dev pkgconf wget zlib1g-dev pkg-config
 RUN git clone --depth 1 -b v3/master --single-branch https://github.com/SpiderLabs/ModSecurity \
     && cd ModSecurity \
     && git submodule init \
@@ -566,7 +566,7 @@ ARG NAP_MODULES=none
 ENV BUILD_OS=${BUILD_OS}
 
 # GRAAL: add modsecurity
-RUN apt-get update && apt-get install -y -q --fix-missing --no-install-recommends apt-utils autoconf automake build-essential git libcurl4-openssl-dev libgeoip-dev liblmdb-dev libpcre++-dev libtool libxml2-dev libyajl-dev pkgconf wget zlib1g-dev
+RUN apt-get update && apt-get install -y -q --fix-missing --no-install-recommends apt-utils autoconf automake build-essential git libcurl4-openssl-dev libgeoip-dev liblmdb-dev libpcre3-dev libtool libxml2-dev libyajl-dev pkgconf wget zlib1g-dev pkg-config
 RUN --mount=type=bind,from=modsecurity-lib,target=/tmp/ot/ \
     ls -all /tmp/ot/usr/local/modsecurity/ \
     && ls -all /tmp/ot/usr/lib/nginx/modules/ \
