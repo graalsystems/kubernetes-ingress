@@ -529,7 +529,7 @@ RUN --mount=type=secret,id=nginx-repo.crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode
 
 ############################################# GRAAL: ModSecurity #############################################
 FROM ${BUILD_OS} AS modsecurity-lib
-ARG MS_NGINX_VERSION=1.23.2
+ARG MS_NGINX_VERSION=1.27.3
 
 RUN apt-get update && apt-get install -y -q --fix-missing --no-install-recommends apt-utils autoconf automake build-essential git libcurl4-openssl-dev libgeoip-dev liblmdb-dev libpcre3-dev libtool libxml2-dev libyajl-dev pkgconf wget zlib1g-dev pkg-config
 RUN git clone --depth 1 -b v3/master --single-branch https://github.com/SpiderLabs/ModSecurity \
